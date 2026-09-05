@@ -128,6 +128,7 @@ function animateWastage() {
 function initPresenter(slides: SlideMeta[]) {
   const panel = document.getElementById("presenter")!;
   const toggle = document.getElementById("presenter-toggle")!;
+  const close = document.getElementById("presenter-close")!;
   const list = panel.querySelector(".presenter__notes") as HTMLElement;
   const nameEl = panel.querySelector(".presenter__slidename") as HTMLElement;
   const byId = new Map(slides.map((s) => [s.id, s]));
@@ -140,13 +141,17 @@ function initPresenter(slides: SlideMeta[]) {
   };
   render(slides[0].id);
 
-  let hidden = false;
+  // On narrow/touch viewports the panel has no room to sit alongside slide
+  // content without overlapping it, so it starts collapsed there.
+  let hidden = window.matchMedia("(max-width: 820px)").matches;
   const setHidden = (v: boolean) => {
     hidden = v;
     panel.classList.toggle("is-hidden", hidden);
     toggle.classList.toggle("is-visible", hidden);
   };
+  setHidden(hidden);
   toggle.addEventListener("click", () => setHidden(false));
+  close.addEventListener("click", () => setHidden(true));
   window.addEventListener("keydown", (e) => {
     if (e.key === "n" || e.key === "N") setHidden(!hidden);
   });
