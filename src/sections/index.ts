@@ -11,6 +11,7 @@ import {
   RESEARCH,
   SOLUTIONS,
   SPEEDBREAKER,
+  GRID_FLOW,
   FOOTSTEP,
   ANALYSIS,
   CHALLENGES,
@@ -150,9 +151,7 @@ export function buildSections(app: HTMLElement): BuildResult {
 
   // ---- DEEP DIVE: SPEED BREAKER ----
   const sbStage = el(`
-    <div class="deepdive__stage" data-stage="speedbreaker">
-      <div class="deepdive__photo"><img src="${SPEEDBREAKER.photo}" alt="${SPEEDBREAKER.photoCaption}" loading="lazy"/></div>
-    </div>`);
+    <div class="deepdive__stage" data-stage="speedbreaker"></div>`);
   const speedbreaker = el(`
     <section class="slide" id="dd-speedbreaker" data-slide data-name="Speed Breaker">
       <div class="wrap">
@@ -171,11 +170,32 @@ export function buildSections(app: HTMLElement): BuildResult {
   speedbreaker.querySelector(".deepdive__stage-wrap")!.replaceWith(sbStage);
   const sbSteps = Array.from(speedbreaker.querySelectorAll<HTMLElement>("[data-step]"));
 
+  // ---- ROAD ENERGY → POWER GRID (System 01 extension) ----
+  const gridFlow = el(`
+    <section class="slide" id="grid-flow" data-slide data-name="Road to Grid">
+      <div class="wrap">
+        <span class="chapter-tag" data-reveal>${GRID_FLOW.eyebrow}</span>
+        <h2 class="h-section" data-reveal style="margin-top:14px">${GRID_FLOW.title}</h2>
+        <div class="flow__grid" style="--a:${a[GRID_FLOW.accent]}">
+          ${GRID_FLOW.steps
+            .map(
+              (s) => `
+            <div class="flow-step" data-reveal>
+              <div class="flow-step__no">${s.no}</div>
+              <div>
+                <div class="flow-step__title">${s.title}</div>
+                <div class="flow-step__body">${s.body}</div>
+              </div>
+            </div>`
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>`);
+
   // ---- DEEP DIVE: FOOTSTEP ----
   const fsStage = el(`
-    <div class="deepdive__stage" data-stage="footstep">
-      <div class="deepdive__photo"><img src="${FOOTSTEP.photo}" alt="${FOOTSTEP.photoCaption}" loading="lazy"/></div>
-    </div>`);
+    <div class="deepdive__stage" data-stage="footstep"></div>`);
   const footstep = el(`
     <section class="slide" id="dd-footstep" data-slide data-name="Footstep">
       <div class="wrap">
@@ -295,7 +315,7 @@ export function buildSections(app: HTMLElement): BuildResult {
       </div>
     </section>`);
 
-  app.append(hero, toc, problem, research, solutions, speedbreaker, footstep, analysis, challenges, conclusion, biblio);
+  app.append(hero, toc, problem, research, solutions, speedbreaker, gridFlow, footstep, analysis, challenges, conclusion, biblio);
 
   // wire count-up targets
   app.querySelectorAll<HTMLElement>("[data-count]").forEach((n) => {
@@ -309,6 +329,7 @@ export function buildSections(app: HTMLElement): BuildResult {
     { id: "research", name: "Research", notes: RESEARCH.notes },
     { id: "solutions", name: "Solutions", notes: SOLUTIONS.notes },
     { id: "dd-speedbreaker", name: "Speed Breaker", notes: SPEEDBREAKER.notes },
+    { id: "grid-flow", name: "Road to Grid", notes: GRID_FLOW.notes },
     { id: "dd-footstep", name: "Footstep", notes: FOOTSTEP.notes },
     { id: "analysis", name: "Implementation", notes: ANALYSIS.notes },
     { id: "challenges", name: "Challenges", notes: CHALLENGES.notes },

@@ -345,14 +345,12 @@ button { font: inherit; }
 .sol-card .out::before { content: "→"; }
 
 /* =========================================================================
-   Deep dive (device slides) — 3D + photo + step ticker
+   Deep dive (device slides) — 3D + step ticker
    ========================================================================= */
 .deepdive__grid { display: grid; grid-template-columns: 1fr; gap: clamp(24px, 4vw, 50px); align-items: center; }
 @media (min-width: 980px) { .deepdive__grid { grid-template-columns: 1.05fr 0.95fr; } }
 .deepdive__stage { position: relative; aspect-ratio: 1/1; max-height: 58vh; width: 100%; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--stroke); background: linear-gradient(160deg, #ffffff, #e9eef6); box-shadow: var(--shadow); }
 .deepdive__stage canvas { width: 100% !important; height: 100% !important; display: block; }
-.deepdive__photo { position: absolute; right: 14px; bottom: 14px; width: 38%; max-width: 190px; border-radius: 12px; overflow: hidden; border: 2px solid #fff; box-shadow: var(--shadow); }
-.deepdive__photo img { aspect-ratio: 16/10; object-fit: cover; }
 .deepdive__head { margin-bottom: 22px; }
 .deepdive__head h2 { font-family: var(--font-display); font-weight: 700; font-size: var(--step-2); letter-spacing: -0.02em; line-height: 1; margin-top: 10px; }
 .steps { display: grid; gap: 6px; }
@@ -362,6 +360,16 @@ button { font: inherit; }
 .step.is-active .step__no { background: var(--a); border-color: var(--a); color: #fff; }
 .step__title { font-family: var(--font-display); font-weight: 600; font-size: var(--step-0); }
 .step__body { color: var(--ink-dim-solid); font-size: var(--step--1); margin-top: 2px; }
+
+/* =========================================================================
+   Road Energy → Power Grid — compact step grid
+   ========================================================================= */
+.flow__grid { --a: var(--blue); display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: clamp(20px, 3.5vh, 40px); }
+@media (min-width: 760px) { .flow__grid { grid-template-columns: repeat(2, 1fr); gap: 12px 24px; } }
+.flow-step { display: flex; align-items: flex-start; gap: 14px; padding: 14px 18px; border-radius: 14px; background: var(--panel); border: 1px solid var(--stroke); box-shadow: var(--shadow-sm); }
+.flow-step__no { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; font-family: var(--font-display); font-weight: 700; font-size: var(--step--1); background: var(--a); color: #fff; }
+.flow-step__title { font-family: var(--font-display); font-weight: 600; font-size: var(--step-0); }
+.flow-step__body { color: var(--ink-dim-solid); font-size: var(--step--1); margin-top: 2px; }
 
 /* =========================================================================
    Analysis — big numbers

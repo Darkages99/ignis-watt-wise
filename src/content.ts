@@ -111,8 +111,6 @@ export const SPEEDBREAKER = {
   eyebrow: "System 01",
   title: "Piezoelectric Speed Breaker",
   accent: "blue",
-  photo: "/img/speedbreaker.jpg",
-  photoCaption: "Working prototype — vehicle load lights the LED array",
   steps: [
     { no: "1", title: "Vehicle rolls over", body: "Weight presses the platform." },
     { no: "2", title: "Discs compress", body: "PZT crystals deform, releasing charge." },
@@ -123,7 +121,30 @@ export const SPEEDBREAKER = {
   notes: [
     "Walk the five steps as the animation loops: roll-over → compress → AC → rectify → store.",
     "Key selling point: no moving parts are exposed to traffic, so it's low-maintenance on the road.",
-    "The photo is our actual prototype — vehicle load is enough to light the whole LED strip.",
+    "This is our actual working prototype — vehicle load alone is enough to light the whole LED strip.",
+  ],
+};
+
+// ---- Road Energy → Power Grid (System 01 extension) ---------------------
+export type GridStep = { no: string; title: string; body: string };
+
+export const GRID_FLOW = {
+  eyebrow: "System 01 · Grid Integration",
+  title: "Road Energy → Power Grid",
+  accent: "blue",
+  steps: [
+    { no: "1", title: "Vehicle Movement", body: "Vehicles rolling over the road compress the speed breaker." },
+    { no: "2", title: "Energy Harvesting", body: "Piezoelectric modules turn that pressure into charge." },
+    { no: "3", title: "Energy Collection", body: "Underground cables carry the charge in from every module." },
+    { no: "4", title: "Centralized Unit", body: "Rectify, regulate & combine the output in one place." },
+    { no: "5", title: "Grid-Tie System", body: "DC → AC, synchronized and protected for the grid." },
+    { no: "6", title: "Power Grid", body: "Clean electricity is fed into the power grid." },
+    { no: "7", title: "City Use", body: "Runs street lighting, traffic signals & infrastructure." },
+  ] as GridStep[],
+  notes: [
+    "This is the missing link between the speed breaker and the wider grid — what happens after a vehicle rolls over it.",
+    "Walk it as one pipeline: vehicle movement → piezo harvesting → underground cable collection → a centralized rectify/regulate/combine unit → a grid-tie inverter that syncs and protects → the power grid itself → city use.",
+    "The payoff: at scale this isn't just one LED strip — it's clean electricity feeding back into the grid to run street lighting, signals and city infrastructure.",
   ],
 };
 
@@ -131,8 +152,6 @@ export const FOOTSTEP = {
   eyebrow: "System 02",
   title: "Footstep Energy Harvester",
   accent: "green",
-  photo: "/img/footstep.jpg",
-  photoCaption: "Working prototype — steps counted and voltage logged live",
   steps: [
     { no: "1", title: "Footstep lands", body: "Pressure hits the tile." },
     { no: "2", title: "Layers compress", body: "Stacked piezo discs deform." },
